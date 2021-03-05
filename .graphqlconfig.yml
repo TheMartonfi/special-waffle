@@ -1,0 +1,13 @@
+projects:
+  specialwaffle:
+    schemaPath: src/graphql/codegen/schema.json
+    includes:
+      - src/graphql/**/*.ts
+    excludes:
+      - src/graphql/codegen/**/*.ts
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/graphql/codegen/api.ts
+        docsFilePath: src/graphql/codegen
