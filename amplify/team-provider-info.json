@@ -10,6 +10,11 @@
       "StackName": "amplify-specialwaffle-dev-202102",
       "StackId": "arn:aws:cloudformation:ca-central-1:027179773454:stack/amplify-specialwaffle-dev-202102/d1c9dfe0-7d61-11eb-a25e-06dbe5222370",
       "AmplifyAppId": "d2o5ta1anhabsd"
+    },
+    "categories": {
+      "auth": {
+        "specialwafflecd8358fc": {}
+      }
     }
   }
 }

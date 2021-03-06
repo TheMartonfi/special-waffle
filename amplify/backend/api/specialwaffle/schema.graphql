@@ -1,5 +1,116 @@
-type Todo @model {
+enum TopicResponseType {
+  question
+  answer
+  comment
+}
+
+type User @model {
   id: ID!
-  name: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+# @auth(rules: [{ allow: owner }])
+type Lecture @model {
+  id: ID!
+  title: String!
   description: String
+  topics: [Topic] @connection(keyName: "byLecture", fields: ["id"])
+  quizzes: [Quiz] @connection(keyName: "byLecture", fields: ["id"])
+  polls: [Topic] @connection(keyName: "byLecture", fields: ["id"])
+}
+
+type Session @model {
+  id: ID!
+  lectureId: ID!
+  endedAt: AWSDateTime
+}
+
+type Attendee @model {
+  id: ID!
+  studentId: ID!
+  sessionId: ID!
+}
+
+type Topic @model @key(name: "byLecture", fields: ["lectureId"]) {
+  id: ID!
+  lectureId: ID!
+  title: String!
+  description: String
+  position: Int
+  reactions: [TopicReaction] @connection(keyName: "byTopic", fields: ["id"])
+  responses: [TopicResponse] @connection(keyName: "byTopic", fields: ["id"])
+}
+
+type TopicReaction @model @key(name: "byTopic", fields: ["topicId"]) {
+  id: ID!
+  topicId: ID!
+  sessionId: ID!
+  studentId: ID!
+  reaction: Boolean!
+}
+
+type TopicResponse @model @key(name: "byTopic", fields: ["topicId"]) {
+  id: ID!
+  topicId: ID!
+  sessionId: ID!
+  studentId: ID!
+  type: TopicResponseType!
+  response: String!
+}
+
+type Quiz @model @key(name: "byLecture", fields: ["lectureId"]) {
+  id: ID!
+  lectureId: ID!
+  title: String!
+  position: Int
+  questions: [QuizQuestion] @connection(keyName: "byQuiz", fields: ["id"])
+  responses: [QuizResponse] @connection(keyName: "byQuiz", fields: ["id"])
+}
+
+type QuizQuestion @model @key(name: "byQuiz", fields: ["quizId"]) {
+  id: ID!
+  quizId: ID!
+  question: String!
+  answers: [QuizAnswer] @connection(keyName: "byQuizQuestion", fields: ["id"])
+}
+
+type QuizAnswer
+  @model
+  @key(name: "byQuizQuestion", fields: ["quizQuestionId"]) {
+  id: ID!
+  quizQuestionId: ID!
+  answer: String!
+  correct: Boolean!
+}
+
+type QuizResponse @model @key(name: "byQuiz", fields: ["quizId"]) {
+  id: ID!
+  quizId: ID!
+  quizAnswerId: ID!
+  sessionId: ID!
+  studentId: ID!
+}
+
+type Poll @model @key(name: "byLecture", fields: ["lectureId"]) {
+  id: ID!
+  lectureId: ID!
+  question: String!
+  position: Int
+  choices: [PollChoice] @connection(keyName: "byPoll", fields: ["id"])
+}
+
+type PollChoice @model @key(name: "byPoll", fields: ["id"]) {
+  id: ID!
+  pollId: ID!
+  choice: String!
+  responses: [PollResponse] @connection(keyName: "byPollChoice", fields: ["id"])
+}
+
+type PollResponse @model @key(name: "byPollChoice", fields: ["id"]) {
+  id: ID!
+  pollChoiceId: ID!
+  sessionId: ID!
+  studentId: ID!
 }

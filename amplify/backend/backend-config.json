@@ -16,5 +16,13 @@
         }
       }
     }
+  },
+  "auth": {
+    "specialwafflecd8358fc": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
   }
 }
