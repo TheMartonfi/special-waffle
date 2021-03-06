@@ -10,14 +10,21 @@
 		"lint": "eslint --ext .ts,.tsx ."
 	},
 	"dependencies": {
+		"@aws-amplify/ui-react": "^1.0.3",
+		"aws-amplify": "^3.3.22",
 		"next": "10.0.7",
 		"react": "17.0.1",
 		"react-dom": "17.0.1",
+		"styletron-engine-atomic": "^1.4.7",
+		"styletron-react": "^6.0.1",
 		"typescript": "^4.2.3"
 	},
 	"devDependencies": {
 		"@types/node": "^14.14.31",
 		"@types/react": "^17.0.2",
+		"@types/styletron-engine-atomic": "^1.1.0",
+		"@types/styletron-react": "^5.0.2",
+		"@types/styletron-standard": "^2.0.1",
 		"@typescript-eslint/eslint-plugin": "^4.16.1",
 		"eslint": "^7.21.0",
 		"eslint-config-airbnb-typescript": "^12.3.1",

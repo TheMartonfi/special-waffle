@@ -81,11 +81,13 @@ export type DeleteUserInput = {
 
 export type CreateLectureInput = {
   id?: string | null,
+  lecturerId: string,
   title: string,
   description?: string | null,
 };
 
 export type ModelLectureConditionInput = {
+  lecturerId?: ModelIDInput | null,
   title?: ModelStringInput | null,
   description?: ModelStringInput | null,
   and?: Array< ModelLectureConditionInput | null > | null,
@@ -93,9 +95,26 @@ export type ModelLectureConditionInput = {
   not?: ModelLectureConditionInput | null,
 };
 
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
 export type Lecture = {
   __typename: "Lecture",
   id?: string,
+  lecturerId?: string,
   title?: string,
   description?: string | null,
   topics?: ModelTopicConnection,
@@ -235,6 +254,7 @@ export type QuizResponse = {
 
 export type UpdateLectureInput = {
   id: string,
+  lecturerId?: string | null,
   title?: string | null,
   description?: string | null,
 };
@@ -255,22 +275,6 @@ export type ModelSessionConditionInput = {
   and?: Array< ModelSessionConditionInput | null > | null,
   or?: Array< ModelSessionConditionInput | null > | null,
   not?: ModelSessionConditionInput | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
 };
 
 export type Session = {
@@ -689,6 +693,7 @@ export type ModelUserConnection = {
 
 export type ModelLectureFilterInput = {
   id?: ModelIDInput | null,
+  lecturerId?: ModelIDInput | null,
   title?: ModelStringInput | null,
   description?: ModelStringInput | null,
   and?: Array< ModelLectureFilterInput | null > | null,

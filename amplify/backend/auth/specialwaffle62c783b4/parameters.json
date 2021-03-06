@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "specialwafflecd8358fc_identitypool_cd8358fc",
+    "identityPoolName": "specialwaffle62c783b4_identitypool_62c783b4",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "speciacd8358fc",
-    "userPoolName": "specialwafflecd8358fc_userpool_cd8358fc",
+    "resourceNameTruncated": "specia62c783b4",
+    "userPoolName": "specialwaffle62c783b4_userpool_62c783b4",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -18,9 +18,7 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email",
-        "family_name",
-        "name"
+        "email"
     ],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
@@ -30,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "speciacd8358fc_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "specia62c783b4_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "cd8358fc",
-    "resourceName": "specialwafflecd8358fc",
+    "sharedId": "62c783b4",
+    "resourceName": "specialwaffle62c783b4",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -51,13 +49,8 @@
     "usernameAttributes": [
         "email"
     ],
-    "triggers": "{}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
     "dependsOn": []
 }

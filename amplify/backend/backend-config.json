@@ -18,7 +18,7 @@
     }
   },
   "auth": {
-    "specialwafflecd8358fc": {
+    "specialwaffle62c783b4": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

@@ -11,9 +11,9 @@ type User @model {
   email: String!
 }
 
-# @auth(rules: [{ allow: owner }])
 type Lecture @model {
   id: ID!
+  lecturerId: ID!
   title: String!
   description: String
   topics: [Topic] @connection(keyName: "byLecture", fields: ["id"])
