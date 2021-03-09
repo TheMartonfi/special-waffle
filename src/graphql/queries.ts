@@ -37,6 +37,7 @@ export const getLecture = /* GraphQL */ `
   query GetLecture($id: ID!) {
     getLecture(id: $id) {
       id
+      lecturerId
       title
       description
       topics {
@@ -46,6 +47,31 @@ export const getLecture = /* GraphQL */ `
           title
           description
           position
+          reactions {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              reaction
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              type
+              response
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -57,6 +83,28 @@ export const getLecture = /* GraphQL */ `
           lectureId
           title
           position
+          questions {
+            items {
+              id
+              quizId
+              question
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              quizId
+              quizAnswerId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -66,9 +114,18 @@ export const getLecture = /* GraphQL */ `
         items {
           id
           lectureId
-          title
-          description
+          question
           position
+          choices {
+            items {
+              id
+              pollId
+              choice
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -88,15 +145,56 @@ export const listLectures = /* GraphQL */ `
     listLectures(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        lecturerId
         title
         description
         topics {
+          items {
+            id
+            lectureId
+            title
+            description
+            position
+            reactions {
+              nextToken
+            }
+            responses {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         quizzes {
+          items {
+            id
+            lectureId
+            title
+            position
+            questions {
+              nextToken
+            }
+            responses {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         polls {
+          items {
+            id
+            lectureId
+            question
+            position
+            choices {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -216,9 +314,28 @@ export const listTopics = /* GraphQL */ `
         description
         position
         reactions {
+          items {
+            id
+            topicId
+            sessionId
+            studentId
+            reaction
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         responses {
+          items {
+            id
+            topicId
+            sessionId
+            studentId
+            type
+            response
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -308,6 +425,17 @@ export const getQuiz = /* GraphQL */ `
           id
           quizId
           question
+          answers {
+            items {
+              id
+              quizQuestionId
+              answer
+              correct
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -343,9 +471,28 @@ export const listQuizs = /* GraphQL */ `
         title
         position
         questions {
+          items {
+            id
+            quizId
+            question
+            answers {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         responses {
+          items {
+            id
+            quizId
+            quizAnswerId
+            sessionId
+            studentId
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -389,6 +536,14 @@ export const listQuizQuestions = /* GraphQL */ `
         quizId
         question
         answers {
+          items {
+            id
+            quizQuestionId
+            answer
+            correct
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -474,6 +629,17 @@ export const getPoll = /* GraphQL */ `
           id
           pollId
           choice
+          responses {
+            items {
+              id
+              pollChoiceId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -497,6 +663,16 @@ export const listPolls = /* GraphQL */ `
         question
         position
         choices {
+          items {
+            id
+            pollId
+            choice
+            responses {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -540,6 +716,14 @@ export const listPollChoices = /* GraphQL */ `
         pollId
         choice
         responses {
+          items {
+            id
+            pollChoiceId
+            sessionId
+            studentId
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt

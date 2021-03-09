@@ -42,6 +42,7 @@ export const onCreateLecture = /* GraphQL */ `
   subscription OnCreateLecture {
     onCreateLecture {
       id
+      lecturerId
       title
       description
       topics {
@@ -51,6 +52,31 @@ export const onCreateLecture = /* GraphQL */ `
           title
           description
           position
+          reactions {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              reaction
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              type
+              response
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -62,6 +88,28 @@ export const onCreateLecture = /* GraphQL */ `
           lectureId
           title
           position
+          questions {
+            items {
+              id
+              quizId
+              question
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              quizId
+              quizAnswerId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -71,9 +119,18 @@ export const onCreateLecture = /* GraphQL */ `
         items {
           id
           lectureId
-          title
-          description
+          question
           position
+          choices {
+            items {
+              id
+              pollId
+              choice
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -88,6 +145,7 @@ export const onUpdateLecture = /* GraphQL */ `
   subscription OnUpdateLecture {
     onUpdateLecture {
       id
+      lecturerId
       title
       description
       topics {
@@ -97,6 +155,31 @@ export const onUpdateLecture = /* GraphQL */ `
           title
           description
           position
+          reactions {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              reaction
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              type
+              response
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -108,6 +191,28 @@ export const onUpdateLecture = /* GraphQL */ `
           lectureId
           title
           position
+          questions {
+            items {
+              id
+              quizId
+              question
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              quizId
+              quizAnswerId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -117,9 +222,18 @@ export const onUpdateLecture = /* GraphQL */ `
         items {
           id
           lectureId
-          title
-          description
+          question
           position
+          choices {
+            items {
+              id
+              pollId
+              choice
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -134,6 +248,7 @@ export const onDeleteLecture = /* GraphQL */ `
   subscription OnDeleteLecture {
     onDeleteLecture {
       id
+      lecturerId
       title
       description
       topics {
@@ -143,6 +258,31 @@ export const onDeleteLecture = /* GraphQL */ `
           title
           description
           position
+          reactions {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              reaction
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              type
+              response
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -154,6 +294,28 @@ export const onDeleteLecture = /* GraphQL */ `
           lectureId
           title
           position
+          questions {
+            items {
+              id
+              quizId
+              question
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              quizId
+              quizAnswerId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -163,9 +325,18 @@ export const onDeleteLecture = /* GraphQL */ `
         items {
           id
           lectureId
-          title
-          description
+          question
           position
+          choices {
+            items {
+              id
+              pollId
+              choice
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -449,6 +620,17 @@ export const onCreateQuiz = /* GraphQL */ `
           id
           quizId
           question
+          answers {
+            items {
+              id
+              quizQuestionId
+              answer
+              correct
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -483,6 +665,17 @@ export const onUpdateQuiz = /* GraphQL */ `
           id
           quizId
           question
+          answers {
+            items {
+              id
+              quizQuestionId
+              answer
+              correct
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -517,6 +710,17 @@ export const onDeleteQuiz = /* GraphQL */ `
           id
           quizId
           question
+          answers {
+            items {
+              id
+              quizQuestionId
+              answer
+              correct
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -692,6 +896,17 @@ export const onCreatePoll = /* GraphQL */ `
           id
           pollId
           choice
+          responses {
+            items {
+              id
+              pollChoiceId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -714,6 +929,17 @@ export const onUpdatePoll = /* GraphQL */ `
           id
           pollId
           choice
+          responses {
+            items {
+              id
+              pollChoiceId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -736,6 +962,17 @@ export const onDeletePoll = /* GraphQL */ `
           id
           pollId
           choice
+          responses {
+            items {
+              id
+              pollChoiceId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }

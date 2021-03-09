@@ -10,8 +10,8 @@ projects:
       amplify:
         codeGenTarget: typescript
         generatedFileName: src/api.ts
-        docsFilePath: src/graphql/codegen
-        maxDepth: 3
+        docsFilePath: src/graphql
+        maxDepth: 5
 extensions:
   amplify:
     version: 3

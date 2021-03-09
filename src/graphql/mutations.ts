@@ -54,6 +54,7 @@ export const createLecture = /* GraphQL */ `
   ) {
     createLecture(input: $input, condition: $condition) {
       id
+      lecturerId
       title
       description
       topics {
@@ -63,6 +64,31 @@ export const createLecture = /* GraphQL */ `
           title
           description
           position
+          reactions {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              reaction
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              type
+              response
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -74,6 +100,28 @@ export const createLecture = /* GraphQL */ `
           lectureId
           title
           position
+          questions {
+            items {
+              id
+              quizId
+              question
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              quizId
+              quizAnswerId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -83,9 +131,18 @@ export const createLecture = /* GraphQL */ `
         items {
           id
           lectureId
-          title
-          description
+          question
           position
+          choices {
+            items {
+              id
+              pollId
+              choice
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -103,6 +160,7 @@ export const updateLecture = /* GraphQL */ `
   ) {
     updateLecture(input: $input, condition: $condition) {
       id
+      lecturerId
       title
       description
       topics {
@@ -112,6 +170,31 @@ export const updateLecture = /* GraphQL */ `
           title
           description
           position
+          reactions {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              reaction
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              type
+              response
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -123,6 +206,28 @@ export const updateLecture = /* GraphQL */ `
           lectureId
           title
           position
+          questions {
+            items {
+              id
+              quizId
+              question
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              quizId
+              quizAnswerId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -132,9 +237,18 @@ export const updateLecture = /* GraphQL */ `
         items {
           id
           lectureId
-          title
-          description
+          question
           position
+          choices {
+            items {
+              id
+              pollId
+              choice
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -152,6 +266,7 @@ export const deleteLecture = /* GraphQL */ `
   ) {
     deleteLecture(input: $input, condition: $condition) {
       id
+      lecturerId
       title
       description
       topics {
@@ -161,6 +276,31 @@ export const deleteLecture = /* GraphQL */ `
           title
           description
           position
+          reactions {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              reaction
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              topicId
+              sessionId
+              studentId
+              type
+              response
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -172,6 +312,28 @@ export const deleteLecture = /* GraphQL */ `
           lectureId
           title
           position
+          questions {
+            items {
+              id
+              quizId
+              question
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          responses {
+            items {
+              id
+              quizId
+              quizAnswerId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -181,9 +343,18 @@ export const deleteLecture = /* GraphQL */ `
         items {
           id
           lectureId
-          title
-          description
+          question
           position
+          choices {
+            items {
+              id
+              pollId
+              choice
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -515,6 +686,17 @@ export const createQuiz = /* GraphQL */ `
           id
           quizId
           question
+          answers {
+            items {
+              id
+              quizQuestionId
+              answer
+              correct
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -552,6 +734,17 @@ export const updateQuiz = /* GraphQL */ `
           id
           quizId
           question
+          answers {
+            items {
+              id
+              quizQuestionId
+              answer
+              correct
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -589,6 +782,17 @@ export const deleteQuiz = /* GraphQL */ `
           id
           quizId
           question
+          answers {
+            items {
+              id
+              quizQuestionId
+              answer
+              correct
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -794,6 +998,17 @@ export const createPoll = /* GraphQL */ `
           id
           pollId
           choice
+          responses {
+            items {
+              id
+              pollChoiceId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -819,6 +1034,17 @@ export const updatePoll = /* GraphQL */ `
           id
           pollId
           choice
+          responses {
+            items {
+              id
+              pollChoiceId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -844,6 +1070,17 @@ export const deletePoll = /* GraphQL */ `
           id
           pollId
           choice
+          responses {
+            items {
+              id
+              pollChoiceId
+              sessionId
+              studentId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }

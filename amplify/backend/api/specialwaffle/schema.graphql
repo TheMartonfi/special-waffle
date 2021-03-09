@@ -18,7 +18,7 @@ type Lecture @model {
   description: String
   topics: [Topic] @connection(keyName: "byLecture", fields: ["id"])
   quizzes: [Quiz] @connection(keyName: "byLecture", fields: ["id"])
-  polls: [Topic] @connection(keyName: "byLecture", fields: ["id"])
+  polls: [Poll] @connection(keyName: "byLecture", fields: ["id"])
 }
 
 type Session @model {
